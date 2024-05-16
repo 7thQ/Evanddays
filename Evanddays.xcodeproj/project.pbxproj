@@ -1,0 +1,458 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6D42D56F2BF40ED600577DA7 /* addEandHButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D42D56E2BF40ED600577DA7 /* addEandHButtonView.swift */; };
+		6D42D5712BF40F2D00577DA7 /* addingEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D42D5702BF40F2D00577DA7 /* addingEventModel.swift */; };
+		6D5FCF3F2BD5673F003C1C3F /* EvanddaysApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5FCF3E2BD5673F003C1C3F /* EvanddaysApp.swift */; };
+		6D5FCF412BD5673F003C1C3F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5FCF402BD5673F003C1C3F /* ContentView.swift */; };
+		6D5FCF432BD56743003C1C3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D5FCF422BD56743003C1C3F /* Assets.xcassets */; };
+		6D5FCF462BD56743003C1C3F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D5FCF452BD56743003C1C3F /* Preview Assets.xcassets */; };
+		6D5FCF552BD5E28D003C1C3F /* loginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5FCF542BD5E28D003C1C3F /* loginModel.swift */; };
+		6DB110AE2BD858A700E10709 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB110AD2BD858A700E10709 /* SignUpModel.swift */; };
+		6DB110B02BD85AA000E10709 /* signUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB110AF2BD85AA000E10709 /* signUpView.swift */; };
+		6DB110B22BD8674E00E10709 /* UsernameandPasswordView .swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB110B12BD8674E00E10709 /* UsernameandPasswordView .swift */; };
+		6DB110B72BD888C800E10709 /* ConfirmDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB110B62BD888C800E10709 /* ConfirmDetailsView.swift */; };
+		6DB9E6F22BDEFB01009AAF60 /* mainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9E6F12BDEFB01009AAF60 /* mainView.swift */; };
+		6DB9E6F52BDEFBC1009AAF60 /* mapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9E6F42BDEFBC1009AAF60 /* mapView.swift */; };
+		6DBB1A812BEA85D100E73337 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBB1A802BEA85D100E73337 /* test.swift */; };
+		6DBB6B942BE080F200268482 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 6DBB6B932BE080F200268482 /* MapboxMaps */; };
+		6DBB6B9B2BE1422500268482 /* profileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5FCF522BD58B44003C1C3F /* profileView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6D42D56E2BF40ED600577DA7 /* addEandHButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addEandHButtonView.swift; sourceTree = "<group>"; };
+		6D42D5702BF40F2D00577DA7 /* addingEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addingEventModel.swift; sourceTree = "<group>"; };
+		6D5FCF3B2BD5673F003C1C3F /* Evanddays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Evanddays.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D5FCF3E2BD5673F003C1C3F /* EvanddaysApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvanddaysApp.swift; sourceTree = "<group>"; };
+		6D5FCF402BD5673F003C1C3F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6D5FCF422BD56743003C1C3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6D5FCF452BD56743003C1C3F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6D5FCF522BD58B44003C1C3F /* profileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileView.swift; sourceTree = "<group>"; };
+		6D5FCF542BD5E28D003C1C3F /* loginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginModel.swift; sourceTree = "<group>"; };
+		6DB110AD2BD858A700E10709 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		6DB110AF2BD85AA000E10709 /* signUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpView.swift; sourceTree = "<group>"; };
+		6DB110B12BD8674E00E10709 /* UsernameandPasswordView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsernameandPasswordView .swift"; sourceTree = "<group>"; };
+		6DB110B62BD888C800E10709 /* ConfirmDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDetailsView.swift; sourceTree = "<group>"; };
+		6DB9E6F12BDEFB01009AAF60 /* mainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainView.swift; sourceTree = "<group>"; };
+		6DB9E6F42BDEFBC1009AAF60 /* mapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapView.swift; sourceTree = "<group>"; };
+		6DBB1A802BEA85D100E73337 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		6DBB6B952BE0844600268482 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6D5FCF382BD5673F003C1C3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DBB6B942BE080F200268482 /* MapboxMaps in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6D5FCF322BD5673F003C1C3F = {
+			isa = PBXGroup;
+			children = (
+				6D5FCF3D2BD5673F003C1C3F /* Evanddays */,
+				6D5FCF3C2BD5673F003C1C3F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6D5FCF3C2BD5673F003C1C3F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6D5FCF3B2BD5673F003C1C3F /* Evanddays.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6D5FCF3D2BD5673F003C1C3F /* Evanddays */ = {
+			isa = PBXGroup;
+			children = (
+				6D5FCF3E2BD5673F003C1C3F /* EvanddaysApp.swift */,
+				6DBB6B972BE1402900268482 /* loginViews */,
+				6DBB6B962BE13FE400268482 /* models */,
+				6DBB6B952BE0844600268482 /* Info.plist */,
+				6D5FCF422BD56743003C1C3F /* Assets.xcassets */,
+				6D5FCF442BD56743003C1C3F /* Preview Content */,
+			);
+			path = Evanddays;
+			sourceTree = "<group>";
+		};
+		6D5FCF442BD56743003C1C3F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				6D5FCF452BD56743003C1C3F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6DB9E6F02BDEF98F009AAF60 /* theAppMainViews */ = {
+			isa = PBXGroup;
+			children = (
+				6D42D56E2BF40ED600577DA7 /* addEandHButtonView.swift */,
+				6DB9E6F32BDEFB05009AAF60 /* subViewsGroup1 */,
+			);
+			path = theAppMainViews;
+			sourceTree = "<group>";
+		};
+		6DB9E6F32BDEFB05009AAF60 /* subViewsGroup1 */ = {
+			isa = PBXGroup;
+			children = (
+				6D5FCF522BD58B44003C1C3F /* profileView.swift */,
+				6DB9E6F42BDEFBC1009AAF60 /* mapView.swift */,
+				6DB9E6F12BDEFB01009AAF60 /* mainView.swift */,
+				6DBB1A802BEA85D100E73337 /* test.swift */,
+			);
+			path = subViewsGroup1;
+			sourceTree = "<group>";
+		};
+		6DBB6B962BE13FE400268482 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				6DB110AD2BD858A700E10709 /* SignUpModel.swift */,
+				6D5FCF542BD5E28D003C1C3F /* loginModel.swift */,
+				6D42D5702BF40F2D00577DA7 /* addingEventModel.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		6DBB6B972BE1402900268482 /* loginViews */ = {
+			isa = PBXGroup;
+			children = (
+				6D5FCF402BD5673F003C1C3F /* ContentView.swift */,
+				6DB110AF2BD85AA000E10709 /* signUpView.swift */,
+				6DB110B12BD8674E00E10709 /* UsernameandPasswordView .swift */,
+				6DB110B62BD888C800E10709 /* ConfirmDetailsView.swift */,
+				6DB9E6F02BDEF98F009AAF60 /* theAppMainViews */,
+			);
+			path = loginViews;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6D5FCF3A2BD5673F003C1C3F /* Evanddays */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D5FCF492BD56743003C1C3F /* Build configuration list for PBXNativeTarget "Evanddays" */;
+			buildPhases = (
+				6D5FCF372BD5673F003C1C3F /* Sources */,
+				6D5FCF382BD5673F003C1C3F /* Frameworks */,
+				6D5FCF392BD5673F003C1C3F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Evanddays;
+			packageProductDependencies = (
+				6DBB6B932BE080F200268482 /* MapboxMaps */,
+			);
+			productName = Evanddays;
+			productReference = 6D5FCF3B2BD5673F003C1C3F /* Evanddays.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6D5FCF332BD5673F003C1C3F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					6D5FCF3A2BD5673F003C1C3F = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = 6D5FCF362BD5673F003C1C3F /* Build configuration list for PBXProject "Evanddays" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6D5FCF322BD5673F003C1C3F;
+			packageReferences = (
+				6DBB6B922BE080F200268482 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
+			);
+			productRefGroup = 6D5FCF3C2BD5673F003C1C3F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6D5FCF3A2BD5673F003C1C3F /* Evanddays */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6D5FCF392BD5673F003C1C3F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D5FCF462BD56743003C1C3F /* Preview Assets.xcassets in Resources */,
+				6D5FCF432BD56743003C1C3F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6D5FCF372BD5673F003C1C3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DB9E6F22BDEFB01009AAF60 /* mainView.swift in Sources */,
+				6D5FCF412BD5673F003C1C3F /* ContentView.swift in Sources */,
+				6DBB6B9B2BE1422500268482 /* profileView.swift in Sources */,
+				6DB110B22BD8674E00E10709 /* UsernameandPasswordView .swift in Sources */,
+				6DB9E6F52BDEFBC1009AAF60 /* mapView.swift in Sources */,
+				6DB110B72BD888C800E10709 /* ConfirmDetailsView.swift in Sources */,
+				6D5FCF552BD5E28D003C1C3F /* loginModel.swift in Sources */,
+				6D42D56F2BF40ED600577DA7 /* addEandHButtonView.swift in Sources */,
+				6DB110B02BD85AA000E10709 /* signUpView.swift in Sources */,
+				6DB110AE2BD858A700E10709 /* SignUpModel.swift in Sources */,
+				6D42D5712BF40F2D00577DA7 /* addingEventModel.swift in Sources */,
+				6D5FCF3F2BD5673F003C1C3F /* EvanddaysApp.swift in Sources */,
+				6DBB1A812BEA85D100E73337 /* test.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6D5FCF472BD56743003C1C3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6D5FCF482BD56743003C1C3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6D5FCF4A2BD56743003C1C3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Evanddays/Preview Content\"";
+				DEVELOPMENT_TEAM = W4PR8GX9LR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Evanddays/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Live.Evanddays;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6D5FCF4B2BD56743003C1C3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Evanddays/Preview Content\"";
+				DEVELOPMENT_TEAM = W4PR8GX9LR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Evanddays/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Live.Evanddays;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6D5FCF362BD5673F003C1C3F /* Build configuration list for PBXProject "Evanddays" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D5FCF472BD56743003C1C3F /* Debug */,
+				6D5FCF482BD56743003C1C3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D5FCF492BD56743003C1C3F /* Build configuration list for PBXNativeTarget "Evanddays" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D5FCF4A2BD56743003C1C3F /* Debug */,
+				6D5FCF4B2BD56743003C1C3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6DBB6B922BE080F200268482 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6DBB6B932BE080F200268482 /* MapboxMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6DBB6B922BE080F200268482 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			productName = MapboxMaps;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 6D5FCF332BD5673F003C1C3F /* Project object */;
+}
