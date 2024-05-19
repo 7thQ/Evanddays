@@ -155,11 +155,11 @@ struct mapView: View {
                     )
                    Text("\(oneEvent.ranking)")
                    Text("\(oneEvent.eventName)")
-                   Text("\(oneEvent.features.firstFeature)")
-                   Text("\(oneEvent.features.secondFeature)")
-                   Text("\(oneEvent.features.thirdfeature)")
+                   ForEach(oneEvent.features, id: \.self) { feature in
+                       Text(feature)
+                   }
                                                 
-                //                                ParcelMapAnnotationVideoView()
+
                                             }
                                         }
                                     }

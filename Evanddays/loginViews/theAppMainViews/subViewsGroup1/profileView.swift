@@ -270,9 +270,6 @@ import SwiftUI
 
 struct capView: View {
     @State private var PInfo = parcelInfo()
-   
-    
-
     @State private var showDetails = false // State to control sheet presentation
     @State private var UserCurrentLocation = CLLocationCoordinate2D(latitude: 46.491508, longitude: -121.197243)
     @State private var zoomLevel: Double = 16 // Initial zoom level
@@ -317,10 +314,9 @@ struct capView: View {
                             )
                            Text("\(oneEvent.ranking)")
                            Text("\(oneEvent.eventName)")
-                           Text("\(oneEvent.features.firstFeature)")
-                           Text("\(oneEvent.features.secondFeature)")
-                           Text("\(oneEvent.features.thirdfeature)")
-
+                           ForEach(oneEvent.features, id: \.self) { feature in
+                               Text(feature)
+                           }
                         //                                ParcelMapAnnotationVideoView()
                                                     }
                                                 }
@@ -350,11 +346,9 @@ struct capView: View {
                             )
                            Text("\(oneEvent.ranking)")
                            Text("\(oneEvent.eventName)")
-                           Text("\(oneEvent.features.firstFeature)")
-                           Text("\(oneEvent.features.secondFeature)")
-                           Text("\(oneEvent.features.thirdfeature)")
-
-                        //                                ParcelMapAnnotationVideoView()
+                           ForEach(oneEvent.features, id: \.self) { feature in
+                               Text(feature)
+                           }
                                                     }
                                                 }
                                             }
@@ -417,7 +411,7 @@ struct capView: View {
         print("check p1:\(Thread.isMainThread)")
         print("check p1:\(Thread.current)")
         // Safeguard to ensure the URL is valid.
-        guard let url = URL(string: "http://192.168.1.21:3000/get-events?userEvents=all") else {
+        guard let url = URL(string: "http://:3000/get-events?userEvents=all") else {
             print("Invalid URL")
             return
         }
