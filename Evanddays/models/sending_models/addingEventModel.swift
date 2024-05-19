@@ -84,7 +84,7 @@ class createEvent: Codable {
 
     // Function to delete a feature safely.
     func deleteFeature(at offsets: IndexSet) {
-        // Remove the feature at the specified index set from the features array.
+        // Remove the feature at the specified index set from the features array
         features.remove(atOffsets: offsets)
     }
 

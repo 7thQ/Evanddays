@@ -20,6 +20,7 @@
 		6D5FCF462BD56743003C1C3F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D5FCF452BD56743003C1C3F /* Preview Assets.xcassets */; };
 		6D5FCF552BD5E28D003C1C3F /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5FCF542BD5E28D003C1C3F /* ResponseModel.swift */; };
 		6D7DBB022BF92270002C521D /* confirmEventDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DBB012BF92270002C521D /* confirmEventDetailsView.swift */; };
+		6D7DBB052BF9CCEA002C521D /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7DBB042BF9CCEA002C521D /* MapboxMaps */; };
 		6DB110AE2BD858A700E10709 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB110AD2BD858A700E10709 /* SignUpModel.swift */; };
 		6DB110B02BD85AA000E10709 /* signUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB110AF2BD85AA000E10709 /* signUpView.swift */; };
 		6DB110B22BD8674E00E10709 /* UsernameandPasswordView .swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB110B12BD8674E00E10709 /* UsernameandPasswordView .swift */; };
@@ -27,7 +28,6 @@
 		6DB9E6F22BDEFB01009AAF60 /* mainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9E6F12BDEFB01009AAF60 /* mainView.swift */; };
 		6DB9E6F52BDEFBC1009AAF60 /* mapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9E6F42BDEFBC1009AAF60 /* mapView.swift */; };
 		6DBB1A812BEA85D100E73337 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBB1A802BEA85D100E73337 /* test.swift */; };
-		6DBB6B942BE080F200268482 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 6DBB6B932BE080F200268482 /* MapboxMaps */; };
 		6DBB6B9B2BE1422500268482 /* profileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5FCF522BD58B44003C1C3F /* profileView.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DBB6B942BE080F200268482 /* MapboxMaps in Frameworks */,
+				6D7DBB052BF9CCEA002C521D /* MapboxMaps in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,7 +187,7 @@
 			);
 			name = Evanddays;
 			packageProductDependencies = (
-				6DBB6B932BE080F200268482 /* MapboxMaps */,
+				6D7DBB042BF9CCEA002C521D /* MapboxMaps */,
 			);
 			productName = Evanddays;
 			productReference = 6D5FCF3B2BD5673F003C1C3F /* Evanddays.app */;
@@ -218,7 +218,7 @@
 			);
 			mainGroup = 6D5FCF322BD5673F003C1C3F;
 			packageReferences = (
-				6DBB6B922BE080F200268482 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
+				6D7DBB032BF9CCEA002C521D /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 			);
 			productRefGroup = 6D5FCF3C2BD5673F003C1C3F /* Products */;
 			projectDirPath = "";
@@ -476,7 +476,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6DBB6B922BE080F200268482 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
+		6D7DBB032BF9CCEA002C521D /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
 			requirement = {
@@ -487,9 +487,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6DBB6B932BE080F200268482 /* MapboxMaps */ = {
+		6D7DBB042BF9CCEA002C521D /* MapboxMaps */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6DBB6B922BE080F200268482 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			package = 6D7DBB032BF9CCEA002C521D /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
 			productName = MapboxMaps;
 		};
 /* End XCSwiftPackageProductDependency section */
