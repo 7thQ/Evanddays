@@ -283,13 +283,8 @@ struct capView: View {
 
 
     var body: some View {
-        VStack {
-                                Button(action: {
-                                    UserDefaults.standard.set(false, forKey: "isLoggedIn") // Reset the login flag
-                                }) {
-                                    Image(systemName: "gear")
-                                        .imageScale(.large)
-                                }
+        ZStack {
+   
             Map(initialViewport: .camera(center: UserCurrentLocation, zoom: zoomLevel, bearing: 0, pitch: 0)) {
                 // Check the current zoom level before displaying the annotation
                 if zoomLevel > 15 && zoomLevel <= 22 {
@@ -395,7 +390,9 @@ struct capView: View {
             .debugOptions([.camera, .padding, .collision])
             .ignoresSafeArea()
 //            SearchMapBar()
-        }
+            
+            Events_Memories_Widgets()
+        }//end of Zstack
 //
         .sheet(isPresented: $showDetails) {
             

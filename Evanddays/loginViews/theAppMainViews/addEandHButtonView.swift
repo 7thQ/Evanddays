@@ -4,17 +4,22 @@
 //
 //  Created by David on 5/14/24.
 //
-
+import Foundation
 import SwiftUI
+import PhotosUI // Provides access to the Photos library, enabling photo and video selection.
 
 struct addEandHButtonView: View {
     @State private var model = createEvent()
+    @State private var media = addVideoOrPhotos()
 
     var body: some View {
         NavigationStack{
             Form{
                 Section("Event Name:"){
                     TextField("", text: $model.eventName)
+                }
+                Section(""){
+                    PhotosPicker("hello", selection: $media.selectedItem, matching: .any(of:[.videos, .images]))
                 }
                 Section("Features") {
                     // Loop over each feature in the model's features array.
@@ -65,17 +70,73 @@ struct addEandHButtonView: View {
                 }
                 Section{
                     NavigationLink("confirm Details"){
-                        confirmEventDetailsView(model:model)
+                        confirmEventDetailsView(model:model, media:media)
                     }
                     .disabled(model.checker)
+                }
+                Section{
+                    Button("send") {
+                        Task {
+                            await model.sendDetails()
+                        }
+                    }
+                    Button("Upload Media") {
+                        Task {
+                            await media.uploadMediaData()
+                        }
+                    }
                 }
             }
             .navigationTitle("The Special Ocasion ;)")
         }
         .navigationBarTitleDisplayMode(.inline)
     }
+    
+  
+
+
+
 }
 
 #Preview {
     addEandHButtonView()
 }
+
+
+
+//
+//Task {
+//    if let mediaData = model.mediaData {
+//        do {
+//            try await uploadMedia(fileData: mediaData, fileName: "media.mov", mimeType: "video/quicktime")
+//        } catch {
+//            print("Media upload failed with error: \(error)")
+//        }
+//    }
+//}
+
+
+
+//func uploadMedia(fileData: Data, fileName: String, mimeType: String) async throws {
+//    let boundary = UUID().uuidString
+//    var request = URLRequest(url: URL(string: "https://reqres.in/api/upload")!)
+//    request.httpMethod = "POST"
+//    request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+//
+//    var body = Data()
+//    body.append("--\(boundary)\r\n".data(using: .utf8)!)
+//    body.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+//    body.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
+//    body.append(fileData)
+//    body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+//
+//    request.httpBody = body
+//
+//    let (data, response) = try await URLSession.shared.upload(for: request, from: body)
+//
+//    if let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) {
+//        print("Media upload successful")
+//    } else {
+//        print("Media upload failed with response: \(response)")
+//    }
+//}

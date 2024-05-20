@@ -19,6 +19,9 @@
 		6D5FCF432BD56743003C1C3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D5FCF422BD56743003C1C3F /* Assets.xcassets */; };
 		6D5FCF462BD56743003C1C3F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D5FCF452BD56743003C1C3F /* Preview Assets.xcassets */; };
 		6D5FCF552BD5E28D003C1C3F /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5FCF542BD5E28D003C1C3F /* ResponseModel.swift */; };
+		6D73164F2BFA83510055F3FF /* Events_Memories_Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D73164E2BFA83510055F3FF /* Events_Memories_Widgets.swift */; };
+		6D7316512BFA84090055F3FF /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7316502BFA84090055F3FF /* MainNavigationView.swift */; };
+		6D7316532BFA849F0055F3FF /* HostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7316522BFA849F0055F3FF /* HostingView.swift */; };
 		6D7DBB022BF92270002C521D /* confirmEventDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DBB012BF92270002C521D /* confirmEventDetailsView.swift */; };
 		6D7DBB052BF9CCEA002C521D /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 6D7DBB042BF9CCEA002C521D /* MapboxMaps */; };
 		6DB110AE2BD858A700E10709 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB110AD2BD858A700E10709 /* SignUpModel.swift */; };
@@ -46,6 +49,9 @@
 		6D5FCF452BD56743003C1C3F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6D5FCF522BD58B44003C1C3F /* profileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileView.swift; sourceTree = "<group>"; };
 		6D5FCF542BD5E28D003C1C3F /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
+		6D73164E2BFA83510055F3FF /* Events_Memories_Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events_Memories_Widgets.swift; sourceTree = "<group>"; };
+		6D7316502BFA84090055F3FF /* MainNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationView.swift; sourceTree = "<group>"; };
+		6D7316522BFA849F0055F3FF /* HostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingView.swift; sourceTree = "<group>"; };
 		6D7DBB012BF92270002C521D /* confirmEventDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = confirmEventDetailsView.swift; sourceTree = "<group>"; };
 		6DB110AD2BD858A700E10709 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		6DB110AF2BD85AA000E10709 /* signUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpView.swift; sourceTree = "<group>"; };
@@ -131,6 +137,9 @@
 		6DB9E6F02BDEF98F009AAF60 /* theAppMainViews */ = {
 			isa = PBXGroup;
 			children = (
+				6D7316522BFA849F0055F3FF /* HostingView.swift */,
+				6D7316502BFA84090055F3FF /* MainNavigationView.swift */,
+				6D73164E2BFA83510055F3FF /* Events_Memories_Widgets.swift */,
 				6D42D56E2BF40ED600577DA7 /* addEandHButtonView.swift */,
 				6D7DBB012BF92270002C521D /* confirmEventDetailsView.swift */,
 				6DB9E6F32BDEFB05009AAF60 /* subViewsGroup1 */,
@@ -253,14 +262,17 @@
 				6D42D5752BF6404A00577DA7 /* ParcelInfoModel.swift in Sources */,
 				6D7DBB022BF92270002C521D /* confirmEventDetailsView.swift in Sources */,
 				6DB9E6F52BDEFBC1009AAF60 /* mapView.swift in Sources */,
+				6D7316532BFA849F0055F3FF /* HostingView.swift in Sources */,
 				6DB110B72BD888C800E10709 /* ConfirmDetailsView.swift in Sources */,
 				6D5FCF552BD5E28D003C1C3F /* ResponseModel.swift in Sources */,
 				6D42D5792BF6411B00577DA7 /* LoginResponeModel.swift in Sources */,
 				6D42D56F2BF40ED600577DA7 /* addEandHButtonView.swift in Sources */,
+				6D73164F2BFA83510055F3FF /* Events_Memories_Widgets.swift in Sources */,
 				6DB110B02BD85AA000E10709 /* signUpView.swift in Sources */,
 				6D42D5772BF640A000577DA7 /* LoginModel.swift in Sources */,
 				6D42D57B2BF6415D00577DA7 /* EventsResponseModel.swift in Sources */,
 				6DB110AE2BD858A700E10709 /* SignUpModel.swift in Sources */,
+				6D7316512BFA84090055F3FF /* MainNavigationView.swift in Sources */,
 				6D42D57D2BF641B400577DA7 /* UserDetailsResponseModel.swift in Sources */,
 				6D42D5712BF40F2D00577DA7 /* addingEventModel.swift in Sources */,
 				6D5FCF3F2BD5673F003C1C3F /* EvanddaysApp.swift in Sources */,
