@@ -93,12 +93,27 @@ class createEvent: Codable {
     }
     
     func sendDetails() async {
-        guard let encoded = try? JSONEncoder().encode(self) else {
+        // Create an instance of EventDetails with features as an array of strings
+        let eventDetails = EventDetails(
+            eventName: eventName,
+            latitude: latitude,
+            longitude: longitude,
+            streetAddress: streetAddress,
+            city: city,
+            state: state,
+            zipCode: zipCode,
+            start: start,
+            end: end,
+            features: features.map { $0.text } // Map features to an array of strings
+        )
+        
+        // Encode EventDetails instead of createEvent
+        guard let encoded = try? JSONEncoder().encode(eventDetails) else {
             print("Failed to encode order")
             return
         }
 
-        let url = URL(string: "http://192.168.1.21:3000/add-event")!
+        let url = URL(string: "http://:3000/add-event")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
@@ -108,16 +123,46 @@ class createEvent: Codable {
             let dataString = String(data: data, encoding: .utf8)
             print("Received data: \(dataString ?? "nil")")
 
-            let decodedOrder = try JSONDecoder().decode(createEvent.self, from: data)
+            // Decode EventDetails instead of createEvent
+            let decodedOrder = try JSONDecoder().decode(EventDetails.self, from: data)
             print("\(decodedOrder)")
 
         } catch {
             print("Check out failed: \(error.localizedDescription)")
         }
     }
-    
+
 
 }
+// New struct to match the desired backend data format
+struct EventDetails: Codable {
+    var eventName: String
+    var latitude: String
+    var longitude: String
+    var streetAddress: String
+    var city: String
+    var state: String
+    var zipCode: String
+    var start: Date
+    var end: Date
+    var features: [String] // Changed to an array of strings
+}
+
+
+struct Feature: Codable {
+    // Unique identifier for each feature, necessary for stable identification in ForEach.
+    var id: UUID = UUID()
+    
+    // Text of the feature, bound to the TextField in the UI.
+    var text: String
+    
+    // Initialize a feature with a given text.
+    init(_ text: String) {
+        self.text = text
+    }
+}
+
+
 
 @Observable
 class addVideoOrPhotos: Codable {
@@ -212,19 +257,6 @@ class addVideoOrPhotos: Codable {
     }
     
     
-}
-
-struct Feature: Codable {
-    // Unique identifier for each feature, necessary for stable identification in ForEach.
-    var id: UUID = UUID()
-    
-    // Text of the feature, bound to the TextField in the UI.
-    var text: String
-    
-    // Initialize a feature with a given text.
-    init(_ text: String) {
-        self.text = text
-    }
 }
 
 
