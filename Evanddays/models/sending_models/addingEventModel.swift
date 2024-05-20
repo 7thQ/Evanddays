@@ -98,7 +98,7 @@ class createEvent: Codable {
             return
         }
 
-        let url = URL(string: "https://reqres.in/api/cupcakes")!
+        let url = URL(string: "http://192.168.1.21:3000/add-event")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
@@ -177,7 +177,7 @@ class addVideoOrPhotos: Codable {
         }
 
         // Set the server URL
-        let url = URL(string: "https://reqres.in/api/upload")!
+        let url = URL(string: "http://192.168.1.21:3000/add-video")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         let boundary = UUID().uuidString
