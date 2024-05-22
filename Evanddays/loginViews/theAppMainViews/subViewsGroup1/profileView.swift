@@ -293,7 +293,7 @@ struct capView: View {
                         MapViewAnnotation(coordinate: oneEvent.Coordinate.clLocation) {
                            Button(action: {
                                
-                               PInfo.ID = oneEvent.id
+                               PInfo.ID = oneEvent.id ?? "P1"
                                PInfo.parcelName = oneEvent.eventName
                                
                              showDetails.toggle() // Show the sheet when the annotation is tapped
@@ -307,7 +307,7 @@ struct capView: View {
                                     .strokeBorder(.black, lineWidth: 0.5)
                                     .background(Circle().fill(Color(.systemGreen)))
                             )
-                           Text("\(oneEvent.ranking)")
+                           Text("\(oneEvent.ranking ?? "")")
                            Text("\(oneEvent.eventName)")
                            ForEach(oneEvent.features, id: \.self) { feature in
                                Text(feature)
@@ -326,7 +326,7 @@ struct capView: View {
                     ForEvery(countries ?? [], id: \.id) { oneEvent in
                         MapViewAnnotation(coordinate: oneEvent.Coordinate.clLocation) {
                            Button(action: {
-                               PInfo.ID = oneEvent.id
+                               PInfo.ID = oneEvent.id ?? "P1"
                                PInfo.parcelName = oneEvent.eventName
                              showDetails.toggle() // Show the sheet when the annotation is tapped
                            }) {
@@ -339,7 +339,7 @@ struct capView: View {
                                     .strokeBorder(.black, lineWidth: 0.5)
                                     .background(Circle().fill(Color(.systemGreen)))
                             )
-                           Text("\(oneEvent.ranking)")
+                           Text("\(oneEvent.ranking ?? "")")
                            Text("\(oneEvent.eventName)")
                            ForEach(oneEvent.features, id: \.self) { feature in
                                Text(feature)
@@ -408,7 +408,7 @@ struct capView: View {
         print("check p1:\(Thread.isMainThread)")
         print("check p1:\(Thread.current)")
         // Safeguard to ensure the URL is valid.
-        guard let url = URL(string: "http://:3000/get-events?userEvents=all") else {
+        guard let url = URL(string: "http://192.168.1.21:3000/get-events?userEvents=all") else {
             print("Invalid URL")
             return
         }

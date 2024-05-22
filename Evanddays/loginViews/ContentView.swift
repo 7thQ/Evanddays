@@ -66,7 +66,7 @@ struct ContentView: View {
             return 
         }//encoding the model sending over
       
-        let url = URL(string: "http://:3000/login")!//we are requesting from
+        let url = URL(string: "http://192.168.1.21:3000/login")!//we are requesting from
         var request = URLRequest(url: url)//initializing the url
         request.setValue("application/json", forHTTPHeaderField: "content-Type")//configure the request
         request.httpMethod = "Post"//method obvisouly

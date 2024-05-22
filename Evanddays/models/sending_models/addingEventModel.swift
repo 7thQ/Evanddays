@@ -113,7 +113,7 @@ class createEvent: Codable {
             return
         }
 
-        let url = URL(string: "http://:3000/add-event")!
+        let url = URL(string: "http://192.168.1.213000/add-event")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
