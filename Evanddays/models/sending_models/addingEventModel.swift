@@ -25,6 +25,7 @@ class createEvent: Codable {
         case _start = "start"
         case _end = "end"
         case _features = "features"
+        case _userName = "userName"
 
     }
     var eventName: String = ""
@@ -42,8 +43,8 @@ class createEvent: Codable {
     var setEnd = false
 //    var emptyAddressFields = "Cant be emtpy"
 //    var emptyCoordinatesFields = "Cant be emtpy"
+    var userName: String = ""
     
-
         
     var checker: Bool {return false}
 //        // Check if the features array is either empty or contains any feature with fewer than 2 characters.
@@ -95,6 +96,7 @@ class createEvent: Codable {
     func sendDetails() async {
         // Create an instance of EventDetails with features as an array of strings
         let eventDetails = EventDetails(
+            userName: userName,
             eventName: eventName,
             latitude: latitude,
             longitude: longitude,
@@ -113,7 +115,7 @@ class createEvent: Codable {
             return
         }
 
-        let url = URL(string: "http://192.168.1.213000/add-event")!
+        let url = URL(string: "http://192.168.1.21:3000/add-event")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
@@ -124,8 +126,12 @@ class createEvent: Codable {
             print("Received data: \(dataString ?? "nil")")
 
             // Decode EventDetails instead of createEvent
-            let decodedOrder = try JSONDecoder().decode(EventDetails.self, from: data)
+            let decodedOrder = try JSONDecoder().decode(Response.self, from: data)
+            
+            let serverResponse = decodedOrder.message ?? ""
             print("\(decodedOrder)")
+            print("\(serverResponse)")
+
 
         } catch {
             print("Check out failed: \(error.localizedDescription)")
@@ -136,6 +142,7 @@ class createEvent: Codable {
 }
 // New struct to match the desired backend data format
 struct EventDetails: Codable {
+    var  userName: String
     var eventName: String
     var latitude: String
     var longitude: String

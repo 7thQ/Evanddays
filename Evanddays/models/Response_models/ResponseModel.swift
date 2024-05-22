@@ -11,7 +11,7 @@ import CoreLocation  // Import to use CLLocationCoordinate2D
  struct Response: Codable{
 
     var Logins: Logins?
-    var message: String?
+    var message: String? = ""
     var userdetails: userDetails?
     var userHosted: [Events]?
     var countries: [Events]?

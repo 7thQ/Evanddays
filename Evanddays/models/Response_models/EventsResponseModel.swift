@@ -10,6 +10,7 @@ import CoreLocation  // Import to use CLLocationCoordinate2D
 
 
  struct Events: Codable {
+     var userName: String?
     var  id: String?
     var eventName: String
     var ranking: String? 

@@ -11,8 +11,11 @@ import PhotosUI // Provides access to the Photos library, enabling photo and vid
 struct addEandHButtonView: View {
     @State private var model = createEvent()
     @State private var media = addVideoOrPhotos()
+    @AppStorage("username") var username: String = ""
+    
 
     var body: some View {
+        
         NavigationStack{
             Form{
                 Section("Event Name:"){
@@ -76,7 +79,10 @@ struct addEandHButtonView: View {
                 }
                 Section{
                     Button("send") {
+                      
                         Task {
+                            model.userName = username
+                            
                             await model.sendDetails()
                         }
                     }
