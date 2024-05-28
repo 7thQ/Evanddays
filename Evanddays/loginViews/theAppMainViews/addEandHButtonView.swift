@@ -62,6 +62,8 @@ struct addEandHButtonView: View {
                         TextField("", text: $model.city)
                         TextField("", text: $model.state)
                         TextField("", text: $model.zipCode)
+                        TextField("continent", text: $model.continent)
+                        TextField("country", text: $model.country)
                     }
                 }
                 Section{

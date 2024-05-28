@@ -26,8 +26,21 @@ class createEvent: Codable {
         case _end = "end"
         case _features = "features"
         case _userName = "userName"
+        case _continent = "continent"
+        case _country = "country"
+       
+        
 
     }
+    
+    
+    var continent: String = ""
+    var country: String = ""
+    
+    
+    
+    
+           
     var eventName: String = ""
     var start: Date = .now
     var end: Date = .now
@@ -106,7 +119,9 @@ class createEvent: Codable {
             zipCode: zipCode,
             start: start,
             end: end,
-            features: features.map { $0.text } // Map features to an array of strings
+            features: features.map { $0.text }, // Map features to an array of strings
+            continent: continent,
+            country: country
         )
         
         // Encode EventDetails instead of createEvent
@@ -115,7 +130,7 @@ class createEvent: Codable {
             return
         }
 
-        let url = URL(string: "http://192.168.1.21:3000/add-event")!
+        let url = URL(string: "http://:3000/add-event")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
@@ -153,6 +168,8 @@ struct EventDetails: Codable {
     var start: Date
     var end: Date
     var features: [String] // Changed to an array of strings
+    var continent: String
+    var country: String
 }
 
 
