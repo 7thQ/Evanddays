@@ -13,7 +13,7 @@ import AVKit
 import Combine
 
 
-struct mainView: View {
+struct parcelProfile: View {
     var PInfo: parcelInfo
 
     var body: some View {
@@ -225,5 +225,5 @@ struct VideosView: View {
 
 // Preview
 #Preview {
-    mainView(PInfo: parcelInfo())
+    parcelProfile(PInfo: parcelInfo())
 }

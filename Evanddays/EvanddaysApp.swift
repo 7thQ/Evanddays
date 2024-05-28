@@ -17,7 +17,8 @@ struct EvanddaysApp: App {
             if isLoggedIn {
 //                ProfileView()
 //                mapView()
-                capView()
+                mapView()
+//                MapView()
 //                mapVi()
                 
             }else{
