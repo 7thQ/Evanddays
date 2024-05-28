@@ -280,12 +280,13 @@ struct capView: View {
     enum ZoomRange {
         case events, countries, none
     }
-
+//    @State var viewport: Viewport = .followPuck(zoom: 13, bearing: .constant(0))
 
     var body: some View {
         ZStack {
    
-            Map(initialViewport: .camera(center: UserCurrentLocation, zoom: zoomLevel, bearing: 0, pitch: 0)) {
+            Map(initialViewport: .followPuck(zoom: zoomLevel)) {
+                Puck2D(bearing: .heading)
                 // Check the current zoom level before displaying the annotation
                 if zoomLevel > 15 && zoomLevel <= 22 {
                    

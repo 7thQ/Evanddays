@@ -6,96 +6,6 @@
 //
 //
 
-import SwiftUI
-import AVKit
-
-//struct mainView: View {
-//    var PInfo: parcelInfo
-//    @State private var player = AVPlayer()
-//    
-//    
-//    var body: some View {
-//    
-//        ScrollView{
-//            VStack(alignment: .center, spacing: 10) {
-//                Image(systemName: "gear") // Replace with your image name
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .frame(width: 120, height: 120)
-//                    .clipShape(Circle())
-//                    .shadow(radius: 3)
-//                    .foregroundColor(.white)
-//                    .padding(.top, 20)
-//                
-//                Text("\(PInfo.parcelName)") // Replace with the actual username
-//                    .font(.headline)
-//                    .fontWeight(.bold)
-//                    .foregroundColor(.white)
-//                
-//                Text("1,000 Followers") // Replace with the actual follower count
-//                    .font(.subheadline)
-//                    .foregroundColor(.white)
-//                    .padding(.vertical,10)
-//                Text("Event ID:\(PInfo.ID) ")
-//                    .font(.headline)
-//                    .fontWeight(.bold)
-//                    .foregroundColor(.white)
-//                    .padding(.bottom,10)
-//                
-//                // Additional profile information can be added here
-//            }
-//            .frame(maxWidth: .infinity)
-//            .background(Color.black)
-//            .cornerRadius(20)
-//            .padding()
-//            //
-//
-//            NavigationView {
-//                List {
-//                    // Loop to create multiple rows
-//                    VideoPlayer(player: player)
-//                    
-//                        .frame(width: 360,height: 640)
-//                        .cornerRadius(12)
-//                        .padding()
-//                  
-//                   
-//                }
-//                
-//                .navigationTitle("Posts") // Set the navigation bar title
-//               
-//            }
-//            .frame(height: 710)
-//            .padding(-1)
-//            .cornerRadius(20)
-//            .background(Color.black)
-//            .padding(.leading, -20)
-//            .padding(.trailing, -20)
-//            .cornerRadius(30)
-//            
-//        }
-//        .scrollBounceBehavior(.basedOnSize)
-//        .task{
-//            await getVideos()
-//        }
-//        
-//        
-//        
-//    }
-//    
-//
-//    private func getVideos() async {
-//         let EID = PInfo.ID
-//        guard let url = URL(string: "http://:3000/get-Videos?IDSent=\(EID)")else{
-//            print("Invalid URL")
-//            return
-//        }
-//        player = AVPlayer(url: url)
-//        player.play()
-//
-//    }
-//}
-
 
 
 import SwiftUI
@@ -157,35 +67,6 @@ struct VideosView: View {
 
     var body: some View {
         VStack {
-//            if videoURLs.isEmpty {
-//                Text("Loading videos...")
-//                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 16 / 9)
-//                
-//            } else {
-//                Group {
-//                    if let player = videoPlayers[currentIndex] {
-//                        VideoPlayer(player: player)
-//                            .onAppear {
-//                                playOnlyCurrentVideo(index: currentIndex)
-//                                if currentIndex == videoURLs.count - 1 {  // Last video appears
-//                                    loadMoreVideos()
-//                                }
-//                            }
-//                            .onDisappear {
-//                                // Pause and reset the video when the view disappears
-//                                pauseAndResetVideo(index: currentIndex)
-//                            }
-//                    } else {
-//                        Text("Loading Video \(currentIndex + 1)")
-//                            .onAppear {
-//                                loadVideoPlayer(at: currentIndex)
-//                                if currentIndex == videoURLs.count - 1 {  // Last video appears
-//                                    loadMoreVideos()
-//                                }
-//                            }
-//                    }
-//                }
-//                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 16 / 9)
             if videoURLs.isEmpty {
                      // Display a progress wheel with a white background when loading videos
                      ProgressView()
@@ -272,6 +153,7 @@ struct VideosView: View {
                     print("check 3:\(Thread.isMainThread)")
                     print("check 3:\(Thread.current)")
                     let decoded = try JSONDecoder().decode(Response.self, from: data)
+                    print("\(decoded)")
                     self.videoURLs.append(contentsOf: decoded.videoURLs)
                     // Pre-load the video for the first index if not loaded yet
                     if self.videoPlayers.isEmpty {
@@ -339,7 +221,7 @@ struct VideosView: View {
     }
 }
 
-// Dummy data for preview purposes
+
 
 // Preview
 #Preview {

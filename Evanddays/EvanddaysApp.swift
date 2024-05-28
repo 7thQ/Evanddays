@@ -18,6 +18,8 @@ struct EvanddaysApp: App {
 //                ProfileView()
 //                mapView()
                 capView()
+//                mapVi()
+                
             }else{
                 ContentView()
             }

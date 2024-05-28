@@ -4,17 +4,13 @@
 //
 //  Created by David on 4/28/24.
 //
-import Foundation
-import SwiftUI
-@_spi(Experimental) import MapboxMaps
 
-
-
-
-      
+//import Foundation
+//import SwiftUI
+//@_spi(Experimental) import MapboxMaps
+//   
 //struct mapView: View {
 //
-//    
 //    var body: some View {
 //        let center = CLLocationCoordinate2D(latitude: 39.5, longitude: -98.0)
 //        Map(initialViewport: .camera(center: center, zoom: 2, bearing: 0, pitch: 0)){
@@ -39,6 +35,13 @@ import SwiftUI
 //}//end of struct
 //
 //
+//
+//#Preview {
+//    mapView()
+//}
+//
+//
+//
 //private let parks = MultiPoint([
 //    CLLocationCoordinate2D(latitude: 38.089600, longitude: -111.149910),
 //    CLLocationCoordinate2D(latitude: 36.491508, longitude: -121.197243),
@@ -54,209 +57,195 @@ import SwiftUI
 //
 
 
-//struct mapView: View {
-//    @State var coordinatesSets: [Coordinate]?
-//    @State private var showDetails = false // State to control sheet presentation
-//    
-//    var body: some View {
-//        let center = CLLocationCoordinate2D(latitude: 39.5, longitude: -98.0)
-//        Map(initialViewport: .camera(center: center, zoom: 2, bearing: 0, pitch: 0)){
-//// ForEach is used to loop over the coordinatesSets array. If coordinatesSets is nil, an empty array is used as a fallback.
-////for every item in the coordinatesSet array use the latitude property as a way to identifiy a new item and its propertys, then pass in the item and dispaly play it using text elements and do it again until all items have been displayed 1 item = [latitude, longitude]
-//            ForEvery(coordinatesSets ?? [], id: \.latitude) { coords in
-//                MapViewAnnotation(coordinate: coords.clLocation) {
-//                   Button(action: {
-//                     showDetails.toggle() // Show the sheet when the annotation is tapped
-//                   }) {
-//               VStack {
-//                Image(systemName: "tree")
-//                    .foregroundColor(.white)
-//                    .padding(.all, 5)
-//                    .background(
-//                        Circle()
-//                            .strokeBorder(.black, lineWidth: 0.5)
-//                            .background(Circle().fill(Color(.systemGreen)))
-//                    )
-//                                                Text("hello")
-//                //                                ParcelMapAnnotationVideoView()
-//                                            }
-//                                        }
-//                                    }
-//                                    .allowOverlap(false)
-//                                    .variableAnchors([ViewAnnotationAnchorConfig(anchor: .center)])
+
+
+//import Foundation
 //
-//            }// end of forEvery
-//                    // The task modifier handles asynchronous operations within the view lifecycle.
-//                    // This is triggered when the view appears.
-//  
-//        }
-//        .task {
-//            await loadCoordinates()
-//            
-//        }//end of map View port
-//        .ignoresSafeArea()
-//        .sheet(isPresented: $showDetails) {
-//       ////            PlaceContentView()
-//               }
-//    }//end of body
-//        func loadCoordinates() async {
-//            // Safeguard to ensure the URL is valid.
-//            guard let url = URL(string: "http://192.168.1.22:3000/get-coordinates?events=all") else {
-//                print("Invalid URL")
-//                return
-//            }
-//            do {
-//                // Perform the network request asynchronously.
-//                let (data, _) = try await URLSession.shared.data(from: url)
-//                // For debugging: Convert the received data to a string and print it.
-//                let dataString = String(data: data, encoding: .utf8)
-//                print("Received data: \(dataString ?? "nil")")
-//                // Decode the received JSON data into the Response struct.
-//                let decodedResponse = try JSONDecoder().decode(Response.self, from: data)
-//                // Update the coordinatesModel state with the fetched coordinates.
-//                print(decodedResponse.coordinates ?? [])
-//    
-//                coordinatesSets = decodedResponse.coordinates
-//    
-//    
-//            } catch {
-//                // If an error occurs during the network request or decoding, print the error.
-//                print("Invalid response: \(error)")
-//            }
-//        }
+//// Define the asynchronous functions
+//func fetchData1() async throws -> String {
+//    try await Task.sleep(nanoseconds: 1_000_000_000) // Simulate async operation with a 1-second delay
+//    return "Data from function 1"
+//}
 //
-//}//end of struct
-//10.1.10.126
-//192.168.1.22
+//func fetchData2() async throws -> String {
+//    try await Task.sleep(nanoseconds: 2_000_000_000) // Simulate async operation with a 2-second delay
+//    return "Data from function 2"
+//}
 //
-struct mapView: View {
-//    @State private var state: Bool = zoomLevel >= 0 && zoomLevel <= 2.9
-    @State private var userHosted: [Events]?
-    @State private var showDetails = false // State to control sheet presentation
-    
-    var body: some View {
-        let center = CLLocationCoordinate2D(latitude: 39.5, longitude: -98.0)
-        Map(initialViewport: .camera(center: center, zoom: 2, bearing: 0, pitch: 0)){
-// ForEach is used to loop over the coordinatesSets array. If coordinatesSets is nil, an empty array is used as a fallback.
-//for every item in the coordinatesSet array use the latitude property as a way to identifiy a new item and its propertys, then pass in the item and dispaly play it using text elements and do it again until all items have been displayed 1 item = [latitude, longitude]
-            ForEvery(userHosted ?? [], id: \.id) { oneEvent in
-                MapViewAnnotation(coordinate: oneEvent.Coordinate.clLocation) {
-                   Button(action: {
-                     showDetails.toggle() // Show the sheet when the annotation is tapped
-                   }) {
-               VStack {
-                Image(systemName: "tree")
-                    .foregroundColor(.white)
-                    .padding(.all, 5)
-                    .background(
-                        Circle()
-                            .strokeBorder(.black, lineWidth: 0.5)
-                            .background(Circle().fill(Color(.systemGreen)))
-                    )
-                   Text("\(oneEvent.ranking)")
-                   Text("\(oneEvent.eventName)")
-                   ForEach(oneEvent.features, id: \.self) { feature in
-                       Text(feature)
-                   }
-                                                
-
-                                            }
-                                        }
-                                    }
-                                    .allowOverlap(false)
-                                    .variableAnchors([ViewAnnotationAnchorConfig(anchor: .center)])
-
-            }// end of forEvery
-                    // The task modifier handles asynchronous operations within the view lifecycle.
-                    // This is triggered when the view appears.
-  
-        }
-        .task {
-            await loaduserHosted()
-            
-        }//end of map View port
-        .ignoresSafeArea()
-        .sheet(isPresented: $showDetails) {
-             mainView(PInfo: parcelInfo())
-               }
-    }//end of body
-        func loaduserHosted() async {
-            // Safeguard to ensure the URL is valid.
-            guard let url = URL(string: "http://:3000/get-events?userEvents=all") else {
-                print("Invalid URL")
-                return
-            }
-            do {
-                // Perform the network request asynchronously.
-                let (data, _) = try await URLSession.shared.data(from: url)
-                // For debugging: Convert the received data to a string and print it.
-                let dataString = String(data: data, encoding: .utf8)
-                print("Received data: \(dataString ?? "nil")")
-                // Decode the received JSON data into the Response struct.
-//                let decodedResponse = try JSONDecoder().decode(Response.self, from: data)
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(DateFormatter.customISO8601)
-                let decodedResponse = try decoder.decode(Response.self, from: data)
-                // Update the coordinatesModel state with the fetched coordinates.
-                print(decodedResponse.userHosted ?? [])
-    
-                userHosted = decodedResponse.userHosted
-    
-    
-            } catch {
-                // If an error occurs during the network request or decoding, print the error.
-                print("Invalid response: \(error)")
-            }
-        }
-
-}//end of struct
+//// Define the main asynchronous function
+//func mainFunction() async {
+//    do {
+//        async let result1 = fetchData1()
+//        async let result2 = fetchData2()
+//
+//        let combinedResult = try await "\(result1) and \(result2)"
+//        print(combinedResult)
+//    } catch {
+//        print("Error in fetching data: \(error)")
+//    }
+//}
+//
+//// Run the main function
+//Task {
+//    await mainFunction()
+//}
+//
 
 
 
+
+
+
+
+
+
+
+
+//
 //
 //import SwiftUI
-//     // As SwiftUI support is experimental it needs to be imported with @_spi(Experimental)
-//     // The API may change in future releases.
-//     @_spi(Experimental) import MapboxMaps
-//     
-//     struct mapView: View {
-//         var body: some View {
-//             let center = CLLocationCoordinate2D(latitude: 39.5, longitude: -98.0)
-//             Map(initialViewport: .camera(center: center, zoom: 2, bearing: 0, pitch: 0))
-//                 .ignoresSafeArea()
-//         }
-//     }
-//     
+//import MapKit
+//
+//struct mapVi: View {
+//    @State private var postion: MapCameraPosition = .userLocation(fallback: .automatic)
+//      var body: some View {
+//          Map(position: $postion){
+//              UserAnnotation()
+//          }
+//          .onAppear{
+//              CLLocationManager().requestWhenInUseAuthorization()
+//          }
+//          .mapControls {
+//              MapUserLocationButton()
+//          }
+//      }
+//  }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Preview provider for SwiftUI previews in Xcode
 #Preview {
-    mapView()
+    mapVi()
 }
 
 
+//import SwiftUI
+//import MapKit
+//
+//struct mapVi: View {
+//    @StateObject private var locationManager = LocationManager()  // Using @StateObject for lifecycle management
+//    @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
+//
+//    var body: some View {
+//        Map(position: $position) {
+//            UserAnnotation()
+//        }
+//        .onAppear {
+//            locationManager.requestLocationAuthorization()  // Trigger location request
+//        }
+//        .mapControls {
+//            MapUserLocationButton()
+//        }
+//    }
+//}
+//
+//class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+//    private var locationManager = CLLocationManager()
+//
+//    override init() {
+//        super.init()
+//        locationManager.delegate = self
+//    }
+//
+//    func requestLocationAuthorization() {
+//        locationManager.requestWhenInUseAuthorization()
+//    }
+//
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//        print("Failed to find user's location: \(error.localizedDescription)")
+//    }
+//}
+//
+//#Preview{
+//    mapVi()
+//}
 
+
+import SwiftUI
+@_spi(Experimental) import MapboxMaps
+
+@available(iOS 14.0, *)
+struct mapVi: View {
+    @State var viewport: Viewport = .followPuck(zoom: 13, bearing: .constant(0))
+
+    var body: some View {
+        VStack{
+            Map(viewport: $viewport) {
+                Puck2D(bearing: .heading)
+                
+            }
+                .mapStyle(.standard)
+                .ignoresSafeArea()
+                
+//            LocateMeButton(viewport: $viewport)
+                
+        }
+    }
+}
+//
+//@available(iOS 14.0, *)
+//struct LocateMeButton: View {
+//    @Binding var viewport: Viewport
+//
+//    var body: some View {
+//        Button {
+//            withViewportAnimation(.default(maxDuration: 1)) {
+//                if isFocusingUser {
+//                    viewport = .followPuck(zoom: 16.5, bearing: .heading, pitch: 60)
+//                } else if isFollowingUser {
+//                    viewport = .idle
+//                } else {
+//                    viewport = .followPuck(zoom: 13, bearing: .constant(0))
+//                }
+//            }
+//        } label: {
+//            Image(systemName: imageName)
+//                .transition(.scale.animation(.easeOut))
+//        }
+//        .safeContentTransition()
+////        .buttonStyle(MapFloatingButtonStyle())
+//    }
+//
+//    private var isFocusingUser: Bool {
+//        return viewport.followPuck?.bearing == .constant(0)
+//    }
+//
+//    private var isFollowingUser: Bool {
+//        return viewport.followPuck?.bearing == .heading
+//    }
+//
+//    private var imageName: String {
+//        if isFocusingUser {
+//           return  "location.fill"
+//        } else if isFollowingUser {
+//           return "location.north.line.fill"
+//        }
+//        return "location"
+//
+//    }
+//}
+//
+//@available(iOS 13.0, *)
+//private extension View {
+//    func safeContentTransition() -> some View {
+//        if #available(iOS 17, *) {
+//            return self.contentTransition(.symbolEffect(.replace))
+//        }
+//        return self
+//    }
+//}
+
+@available(iOS 14.0, *)
+struct LocateMeExample_Preview: PreviewProvider {
+    static var previews: some View {
+        mapVi()
+    }
+}

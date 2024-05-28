@@ -54,7 +54,7 @@ struct ConfirmDetailsView: View {
                 print("Failed")
                 return
             }// encode the data we want send first
-            let url = URL(string: "http://:3000/create-user")!// use the url init on the string to turn the url string into a url type data, also not that the property is const
+            let url = URL(string: "http://192.168.1.21:3000/create-user")!// use the url init on the string to turn the url string into a url type data, also not that the property is const
             var request = URLRequest(url:url)// now turn the url data type into a urlrequest type with the init urlrequest, note notice taht this property is not const because below we are changing its configurations
             request.setValue("application/json", forHTTPHeaderField: "content-Type")//change the configurations, so the backend end know what we are sending and how to handle it
             request.httpMethod = "Post"// add the method type so the back end knows what we are doing
