@@ -43,8 +43,6 @@ struct MainNavigationView: View {
                         .background(Color.black)
                         .cornerRadius(10)
                 }
-                
-                
                 .CustomStyleForBoxing()
                 
             
@@ -53,6 +51,16 @@ struct MainNavigationView: View {
             
                 NavigationLink(destination: HostingView()) {
                     Text("Currently Hosting")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.black)
+                        .cornerRadius(10)
+                }
+                .CustomStyleForBoxing()
+                .cornerRadius(0)
+                
+                NavigationLink(destination: ContinentPickerView()) {
+                    Text("testing")
                         .foregroundColor(.white)
                         .padding()
                         .background(Color.black)

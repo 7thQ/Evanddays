@@ -11,9 +11,6 @@ import PhotosUI // Provides access to the Photos library, enabling photo and vid
 struct addEandHButtonView: View {
     @State private var model = createEvent()
     @State private var media = addVideoOrPhotos()
-    @AppStorage("username") var username: String = ""
-    
-
     var body: some View {
         
         NavigationStack{
@@ -22,7 +19,7 @@ struct addEandHButtonView: View {
                     TextField("", text: $model.eventName)
                 }
                 Section(""){
-                    PhotosPicker("hello", selection: $media.selectedItem, matching: .any(of:[.videos, .images]))
+                    PhotosPicker("Photo/Video", selection: $media.selectedItem, matching: .any(of:[.videos, .images]))
                 }
                 Section("Features") {
                     // Loop over each feature in the model's features array.
@@ -55,39 +52,12 @@ struct addEandHButtonView: View {
                         DatePicker("End time", selection: $model.end)
                     }
                 }
-                Section{
-                    Toggle("Use Address", isOn: $model.useAddress)
-                    if model.useAddress {
-                        TextField("", text: $model.streetAddress)
-                        TextField("", text: $model.city)
-                        TextField("", text: $model.state)
-                        TextField("", text: $model.zipCode)
-                        TextField("continent", text: $model.continent)
-                        TextField("country", text: $model.country)
+                Section {
+                    NavigationLink("Location Details") {
+                        locationDetailsView(model: model, media: media)
                     }
                 }
                 Section{
-                    Toggle("Use Coordinates", isOn: $model.useCoordinates)
-                    if model.useCoordinates {
-                        TextField("", text: $model.latitude)
-                        TextField("", text: $model.longitude)
-                    }
-                }
-                Section{
-                    NavigationLink("confirm Details"){
-                        confirmEventDetailsView(model:model, media:media)
-                    }
-                    .disabled(model.checker)
-                }
-                Section{
-                    Button("send") {
-                      
-                        Task {
-                            model.userName = username
-                            
-                            await model.sendDetails()
-                        }
-                    }
                     Button("Upload Media") {
                         Task {
                             await media.uploadMediaData()

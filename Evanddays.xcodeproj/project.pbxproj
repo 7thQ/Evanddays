@@ -14,6 +14,7 @@
 		6D42D5792BF6411B00577DA7 /* LoginResponeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D42D5782BF6411B00577DA7 /* LoginResponeModel.swift */; };
 		6D42D57B2BF6415D00577DA7 /* EventsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D42D57A2BF6415D00577DA7 /* EventsResponseModel.swift */; };
 		6D42D57D2BF641B400577DA7 /* UserDetailsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D42D57C2BF641B400577DA7 /* UserDetailsResponseModel.swift */; };
+		6D49AF5C2C07C7D400BAC403 /* locationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D49AF5B2C07C7D400BAC403 /* locationDetailsView.swift */; };
 		6D5FCF3F2BD5673F003C1C3F /* EvanddaysApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5FCF3E2BD5673F003C1C3F /* EvanddaysApp.swift */; };
 		6D5FCF412BD5673F003C1C3F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5FCF402BD5673F003C1C3F /* ContentView.swift */; };
 		6D5FCF432BD56743003C1C3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D5FCF422BD56743003C1C3F /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		6D42D5782BF6411B00577DA7 /* LoginResponeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponeModel.swift; sourceTree = "<group>"; };
 		6D42D57A2BF6415D00577DA7 /* EventsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsResponseModel.swift; sourceTree = "<group>"; };
 		6D42D57C2BF641B400577DA7 /* UserDetailsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsResponseModel.swift; sourceTree = "<group>"; };
+		6D49AF5B2C07C7D400BAC403 /* locationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationDetailsView.swift; sourceTree = "<group>"; };
 		6D5FCF3B2BD5673F003C1C3F /* Evanddays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Evanddays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5FCF3E2BD5673F003C1C3F /* EvanddaysApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvanddaysApp.swift; sourceTree = "<group>"; };
 		6D5FCF402BD5673F003C1C3F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				6D7316502BFA84090055F3FF /* MainNavigationView.swift */,
 				6D73164E2BFA83510055F3FF /* Events_Memories_Widgets.swift */,
 				6D42D56E2BF40ED600577DA7 /* addEandHButtonView.swift */,
+				6D49AF5B2C07C7D400BAC403 /* locationDetailsView.swift */,
 				6D7DBB012BF92270002C521D /* confirmEventDetailsView.swift */,
 				6DB9E6F32BDEFB05009AAF60 /* subViewsGroup1 */,
 			);
@@ -274,6 +277,7 @@
 				6DB110AE2BD858A700E10709 /* SignUpModel.swift in Sources */,
 				6D7316512BFA84090055F3FF /* MainNavigationView.swift in Sources */,
 				6D42D57D2BF641B400577DA7 /* UserDetailsResponseModel.swift in Sources */,
+				6D49AF5C2C07C7D400BAC403 /* locationDetailsView.swift in Sources */,
 				6D42D5712BF40F2D00577DA7 /* addingEventModel.swift in Sources */,
 				6D5FCF3F2BD5673F003C1C3F /* EvanddaysApp.swift in Sources */,
 				6DBB1A812BEA85D100E73337 /* test.swift in Sources */,

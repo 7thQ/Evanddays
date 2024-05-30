@@ -20,6 +20,7 @@ struct EvanddaysApp: App {
                 mapView()
 //                MapView()
 //                mapVi()
+//                ContinentPickerView()
                 
             }else{
                 ContentView()

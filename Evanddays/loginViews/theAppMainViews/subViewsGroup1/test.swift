@@ -4,35 +4,35 @@
 //
 //  Created by David on 5/7/24.
 //
-
-import SwiftUI
-
-struct ReelsView: View {
-    // Example data for the rectangles
-    let colors: [Color] = [.red, .green, .blue, .yellow, .purple]
-
-    var body: some View {
-        
-        TabView {
-            ForEach(colors, id: \.self) { color in
-                Rectangle()
-                    .fill(color)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .overlay(Text("Swipe Up for Next").foregroundColor(.white))
-            }
-        }
-        .tabViewStyle(.page(indexDisplayMode: .never)) // Hide the page indicator
-        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 16 / 9) // Set the 9:16 aspect ratio based on the screen width
-        .edgesIgnoringSafeArea(.all) // Optional: Ignore safe area to make the view fullscreen
-    }
-    
-}
-
-struct ReelsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReelsView()
-    }
-}
+//
+//import SwiftUI
+//
+//struct ReelsView: View {
+//    // Example data for the rectangles
+//    let colors: [Color] = [.red, .green, .blue, .yellow, .purple]
+//
+//    var body: some View {
+//        
+//        TabView {
+//            ForEach(colors, id: \.self) { color in
+//                Rectangle()
+//                    .fill(color)
+//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                    .overlay(Text("Swipe Up for Next").foregroundColor(.white))
+//            }
+//        }
+//        .tabViewStyle(.page(indexDisplayMode: .never)) // Hide the page indicator
+//        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 16 / 9) // Set the 9:16 aspect ratio based on the screen width
+//        .edgesIgnoringSafeArea(.all) // Optional: Ignore safe area to make the view fullscreen
+//    }
+//    
+//}
+//
+//struct ReelsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReelsView()
+//    }
+//}
 
 //import SwiftUI
 //
@@ -229,3 +229,72 @@ struct ReelsView_Previews: PreviewProvider {
 
 
 // Assume ParcelInfo is correctly defined somewhere in your project
+
+
+
+
+
+import SwiftUI
+
+struct ContinentPickerView: View {
+    // State variable to hold the selected continent
+    @State private var selectedContinent: Continent?
+    // State variable to hold the list of decoded continents
+    @State private var continents: [Continent] = []
+
+    var body: some View {
+        NavigationView {
+            Form {
+                // Section to display the Picker for continents
+                Section(header: Text("Select a Continent")) {
+                    Picker("Continents", selection: $selectedContinent) {
+                        // Loop through the continents and create a Text view for each
+                        ForEach(continents) { continent in
+                            Text(continent.name).tag(continent as Continent?)
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Continent Picker")
+        }
+        .task {
+            // Fetch the parcels (continents) when the view appears
+            await startFetchingParcels()
+        }
+    }
+
+    // Function to fetch the parcels (continents) from the server
+    func startFetchingParcels() async {
+        // Ensure the URL is valid
+        guard let url = URL(string: "http://10.1.10.126:3000/get-parcels?getParcel=all") else {
+            print("Invalid URL")
+            return
+        }
+        do {
+            // Perform the network request asynchronously
+            let (data, _) = try await URLSession.shared.data(from: url)
+            // For debugging: Convert the received data to a string and print it
+            let dataString = String(data: data, encoding: .utf8)
+            print("Received data: \(dataString ?? "nil")")
+            
+            // Decode the received JSON data into the Response struct
+            let decodedResponse = try JSONDecoder().decode(Response.self, from: data)
+            // Check if the decoded response contains continents
+            if let continentsDict = decodedResponse.continents {
+                // Transform the continents dictionary into an array of Continent objects
+                let decodedContinents = continentsDict.map { Continent(id: $0.value, name: $0.key) }
+                // Update the state variable 'continents' on the main thread
+                DispatchQueue.main.async {
+                    self.continents = decodedContinents
+                }
+            }
+        } catch {
+            // Print any error that occurs during the network request or decoding
+            print("Failure: \(error.localizedDescription)")
+        }
+    }
+}
+
+#Preview {
+    ContinentPickerView()
+}
