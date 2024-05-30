@@ -234,13 +234,95 @@
 
 
 
+//import SwiftUI
+//
+//struct ContinentPickerView: View {
+//    // State variable to hold the selected continent
+//    @State private var selectedContinent: Continent?
+//    // State variable to hold the list of decoded continents
+//    @State private var continents: [Continent] = []
+//
+//    var body: some View {
+//        NavigationView {
+//            Form {
+//                // Section to display the Picker for continents
+//                Section(header: Text("Select a Continent")) {
+//                    Picker("Continents", selection: $selectedContinent) {
+//                        // Loop through the continents and create a Text view for each
+//                        ForEach(continents) { continent in
+//                            Text(continent.name).tag(continent as Continent?)
+//                        }
+//                    }
+//                }
+//            }
+//            .navigationTitle("Continent Picker")
+//        }
+//        .task {
+//            // Fetch the parcels (continents) when the view appears
+//            await startFetchingParcels()
+//        }
+//    }
+//
+//    // Function to fetch the parcels (continents) from the server
+//    func startFetchingParcels() async {
+//        // Ensure the URL is valid
+//        guard let url = URL(string: "http://192.168.1.21:3000/get-parcels?getParcel=all") else {
+//            print("Invalid URL")
+//            return
+//        }
+//        do {
+//            // Perform the network request asynchronously
+//            let (data, _) = try await URLSession.shared.data(from: url)
+//            // For debugging: Convert the received data to a string and print it
+//            let dataString = String(data: data, encoding: .utf8)
+//            print("Received data: \(dataString ?? "nil")")
+//            
+//            // Decode the received JSON data into the Response struct
+//            let decodedResponse = try JSONDecoder().decode(Response.self, from: data)
+//            // Check if the decoded response contains continents
+//            if let continentsDict = decodedResponse.continents {
+//                // Transform the continents dictionary into an array of Continent objects
+//                let decodedContinents = continentsDict.map { Continent(id: $0.value, name: $0.key) }
+//                // Update the state variable 'continents' on the main thread
+//                DispatchQueue.main.async {
+//                    self.continents = decodedContinents
+//                }
+//            }
+//        } catch {
+//            // Print any error that occurs during the network request or decoding
+//            print("Failure: \(error.localizedDescription)")
+//        }
+//    }
+//}
+//
+//#Preview {
+//    ContinentPickerView()
+//}
+
+
+// work on sending what ever one was selceted to the back end to see what is avaiable there and also work on figuring out how this maping works and also when one is selected then show the next 
+
+
 import SwiftUI
 
 struct ContinentPickerView: View {
     // State variable to hold the selected continent
-    @State private var selectedContinent: Continent?
+    @State private var selectedContinent: Continent? {
+        didSet {
+            // When the selected continent changes, fetch countries for the selected continent
+            if let selectedContinent = selectedContinent {
+                Task {
+                    await startFetchingParcels(query: selectedContinent.id)
+                }
+            }
+        }
+    }
+    // State variable to hold the selected country
+    @State private var selectedCountry: Continent?
     // State variable to hold the list of decoded continents
     @State private var continents: [Continent] = []
+    // State variable to hold the list of countries in the selected continent
+    @State private var countries: [Continent] = []
 
     var body: some View {
         NavigationView {
@@ -254,19 +336,34 @@ struct ContinentPickerView: View {
                         }
                     }
                 }
+                
+                // Section to display the Picker for countries if a continent is selected
+                if let selectedContinent = selectedContinent {
+                    Section(header: Text("Select a Country in \(selectedContinent.name)")) {
+                        Picker("Countries", selection: $selectedCountry) {
+                            // Loop through the countries and create a Text view for each
+                            ForEach(countries) { country in
+                                Text(country.name).tag(country as Continent?)
+                            }
+                        }
+                    }
+                }
             }
             .navigationTitle("Continent Picker")
         }
         .task {
-            // Fetch the parcels (continents) when the view appears
-            await startFetchingParcels()
+            // Fetch the continents when the view appears
+            await startFetchingParcels(query: "all")
         }
     }
 
-    // Function to fetch the parcels (continents) from the server
-    func startFetchingParcels() async {
+    // Function to fetch the parcels (continents or countries) from the server
+    func startFetchingParcels(query: String) async {
+        // Construct the URL based on the query
+        let urlString = "http://192.168.1.21:3000/get-parcels?getParcel=\(query)"
+        
         // Ensure the URL is valid
-        guard let url = URL(string: "http://10.1.10.126:3000/get-parcels?getParcel=all") else {
+        guard let url = URL(string: urlString) else {
             print("Invalid URL")
             return
         }
@@ -279,13 +376,25 @@ struct ContinentPickerView: View {
             
             // Decode the received JSON data into the Response struct
             let decodedResponse = try JSONDecoder().decode(Response.self, from: data)
-            // Check if the decoded response contains continents
-            if let continentsDict = decodedResponse.continents {
-                // Transform the continents dictionary into an array of Continent objects
-                let decodedContinents = continentsDict.map { Continent(id: $0.value, name: $0.key) }
-                // Update the state variable 'continents' on the main thread
-                DispatchQueue.main.async {
-                    self.continents = decodedContinents
+            if query == "all" {
+                // If the query is "all", update the continents list
+                if let continentsDict = decodedResponse.continents {
+                    // Transform the continents dictionary into an array of Continent objects
+                    let decodedContinents = continentsDict.map { Continent(id: $0.value, name: $0.key) }
+                    // Update the state variable 'continents' on the main thread
+                    DispatchQueue.main.async {
+                        self.continents = decodedContinents
+                    }
+                }
+            } else {
+                // If the query is not "all", update the countries list
+                if let countriesDict = decodedResponse.continents {
+                    // Transform the countries dictionary into an array of Continent objects
+                    let decodedCountries = countriesDict.map { Continent(id: $0.value, name: $0.key) }
+                    // Update the state variable 'countries' on the main thread
+                    DispatchQueue.main.async {
+                        self.countries = decodedCountries
+                    }
                 }
             }
         } catch {
