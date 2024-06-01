@@ -303,13 +303,58 @@
 // work on sending what ever one was selceted to the back end to see what is avaiable there and also work on figuring out how this maping works and also when one is selected then show the next 
 
 
+//import SwiftUI
+//
+//struct ContinentPickerView: View {
+//    @State private var locationDetails = locationDetailsModel()
+//    // State variable to hold the selected continent
+//
+//
+//    var body: some View {
+//        NavigationView {
+//            Form {
+//                // Section to display the Picker for continents
+//                Section(header: Text("Select a Continent")) {
+//                    Picker("Continents", selection: $locationDetails.selectedContinent) {
+//                        // Loop through the continents and create a Text view for each
+//                        ForEach(locationDetails.parcels) { parcel in
+//                            Text(parcel.name).tag(parcel as parcel?)
+//                        }
+//                    }
+//                    if let selectedCountry = locationDetails.selectedContinent {
+//                               
+//                        Picker("Countries", selection: $locationDetails.selectedCountry) {
+//                                          // Loop through the countries and create a Text view for each
+//                                          ForEach(locationDetails.parcels) { country in
+//                                              Text(country.name).tag(country as parcel?)
+//                                          }
+//                                      }
+//                                  }
+//                              
+//                }
+//            }
+//            .navigationTitle("Continent Picker")
+//        }
+//        .task {
+//            // Fetch the parcels (continents) when the view appears
+//            await locationDetails.startFetchingParcels(Query: "all")
+//        }
+//    }
+//
+//    // Function to fetch the parcels (continents) from the server
+//
+//}
+//
+//#Preview {
+//    ContinentPickerView()
+//}
+
+
 import SwiftUI
 
 struct ContinentPickerView: View {
     @State private var locationDetails = locationDetailsModel()
-    // State variable to hold the selected continent
-
-
+    
     var body: some View {
         NavigationView {
             Form {
@@ -321,18 +366,26 @@ struct ContinentPickerView: View {
                             Text(parcel.name).tag(parcel as parcel?)
                         }
                     }
+                    // Section to display the Picker for countries if a continent is selected
+                    if let selectedContinent = locationDetails.selectedContinent {
+                            Picker("Countries", selection: $locationDetails.selectedCountry) {
+                                // Loop through the countries and create a Text view for each
+                                ForEach(locationDetails.countries) { country in
+                                    Text(country.name).tag(country as parcel?)
+                                }
+                            }
+                    }
+
                 }
+                
             }
             .navigationTitle("Continent Picker")
         }
         .task {
-            // Fetch the parcels (continents) when the view appears
+            // Fetch the continents when the view appears
             await locationDetails.startFetchingParcels(Query: "all")
         }
     }
-
-    // Function to fetch the parcels (continents) from the server
-
 }
 
 #Preview {
