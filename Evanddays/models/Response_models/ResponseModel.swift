@@ -15,7 +15,7 @@ import CoreLocation  // Import to use CLLocationCoordinate2D
     var userdetails: userDetails?
     var userHosted: [Events]?
     var countries: [Events]?
-     var continents: [String: String]?
+     var parcels: [String: String]?
     var urls: [String]?
     var videoURLs: [URL] {
         urls?.compactMap { URL(string: $0) } ?? []
@@ -26,7 +26,7 @@ import CoreLocation  // Import to use CLLocationCoordinate2D
 
 
 // Continent model that conforms to Codable, Identifiable, and Hashable protocols
-struct Continent: Codable, Identifiable, Hashable {
+struct parcel: Codable, Identifiable, Hashable {
     // Unique identifier for each continent
     let id: String
     // Name of the continent
