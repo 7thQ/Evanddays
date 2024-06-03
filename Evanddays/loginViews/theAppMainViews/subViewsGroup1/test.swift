@@ -362,16 +362,24 @@ struct ContinentPickerView: View {
                 Section(header: Text("Select a Continent")) {
                     Picker("Continents", selection: $locationDetails.selectedContinent) {
                         // Loop through the continents and create a Text view for each
-                        ForEach(locationDetails.parcels) { parcel in
-                            Text(parcel.name).tag(parcel as parcel?)
+                        ForEach(locationDetails.continents) { continent in
+                            Text(continent.name).tag(continent as parcel?)
                         }
                     }
                     // Section to display the Picker for countries if a continent is selected
-                    if let selectedContinent = locationDetails.selectedContinent {
+                    if locationDetails.selectedContinent != nil{
                             Picker("Countries", selection: $locationDetails.selectedCountry) {
                                 // Loop through the countries and create a Text view for each
                                 ForEach(locationDetails.countries) { country in
                                     Text(country.name).tag(country as parcel?)
+                                }
+                            }
+                    }
+                    if let selectedCountry = locationDetails.selectedCountry {
+                            Picker("States", selection: $locationDetails.selectedState) {
+                                // Loop through the countries and create a Text view for each
+                                ForEach(locationDetails.states) { state in
+                                    Text(state.name).tag(state as parcel?)
                                 }
                             }
                     }
@@ -383,7 +391,7 @@ struct ContinentPickerView: View {
         }
         .task {
             // Fetch the continents when the view appears
-            await locationDetails.startFetchingParcels(Query: "all")
+            await locationDetails.startFetchingParcels(Query: "all", theContinents: true, theCountries: false, theStates: false)
         }
     }
 }

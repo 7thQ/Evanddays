@@ -63,27 +63,40 @@ class locationDetailsModel {
         // When selectedItem is set, loadMedia is called asynchronously to process the selected media item.
         didSet {
             if let selectedContinent = selectedContinent {
-                Task { await startFetchingParcels(Query: selectedContinent.name) }
+               
+                Task { await startFetchingParcels(Query: selectedContinent.name, theContinents: false, theCountries: true,theStates: false) }
             }
+           
         }
+        
     }
     
     var selectedCountry: parcel? {
         // When selectedItem is set, loadMedia is called asynchronously to process the selected media item.
         didSet {
             if let selectedCountry = selectedCountry {
-                Task { await startFetchingParcels(Query: selectedCountry.name) }
+                Task { await startFetchingParcels(Query: selectedCountry.name, theContinents: false, theCountries: false,theStates: true) }
+            }
+        }
+    }
+    var selectedState: parcel? {
+        // When selectedItem is set, loadMedia is called asynchronously to process the selected media item.
+        didSet {
+            if let selectedState = selectedState {
+                Task { await startFetchingParcels(Query: selectedState.name, theContinents: false, theCountries: false, theStates: false) }
             }
         }
     }
     
     // State variables to hold the list of decoded parcels
-    var parcels: [parcel] = []
+    var continents: [parcel] = []
+//    var theContinents: Bool = false
     var countries: [parcel] = []
+    var states: [parcel] = []
     
-    func startFetchingParcels(Query: String) async {
+    func startFetchingParcels(Query: String,theContinents: Bool, theCountries: Bool, theStates:Bool) async {
         // Ensure the URL is valid
-        guard let url = URL(string: "http://10.1.10.126:3000/get-parcels?getParcel=\(Query)") else {
+        guard let url = URL(string: "http://:3000/get-parcels?getParcel=\(Query)") else {
             print("Invalid URL")
             return
         }
@@ -102,10 +115,12 @@ class locationDetailsModel {
                 let decodedParcels = parcelsDict.map { parcel(id: $0.value, name: $0.key) }
                 // Update the state variable 'parcels' or 'countries' on the main thread
                 DispatchQueue.main.async {
-                    if Query == "all" {
-                        self.parcels = decodedParcels
-                    } else {
+                    if theContinents {
+                        self.continents = decodedParcels
+                    } else if theCountries{
                         self.countries = decodedParcels
+                    } else if theStates{
+                        self.states
                     }
                 }
             }
