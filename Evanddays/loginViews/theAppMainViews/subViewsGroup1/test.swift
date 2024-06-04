@@ -391,7 +391,7 @@ struct ContinentPickerView: View {
         }
         .task {
             // Fetch the continents when the view appears
-            await locationDetails.startFetchingParcels(Query: "all", theContinents: true, theCountries: false, theStates: false)
+            await locationDetails.startFetchingParcels(hello: ["bye","hello"],Query: "all", theContinents: true, theCountries: false, theStates: false)
         }
     }
 }

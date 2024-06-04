@@ -64,7 +64,7 @@ class locationDetailsModel {
         didSet {
             if let selectedContinent = selectedContinent {
                
-                Task { await startFetchingParcels(Query: selectedContinent.name, theContinents: false, theCountries: true,theStates: false) }
+                Task { await startFetchingParcels(hello: ["by"],Query: selectedContinent.name, theContinents: false, theCountries: true,theStates: false) }
             }
            
         }
@@ -75,7 +75,7 @@ class locationDetailsModel {
         // When selectedItem is set, loadMedia is called asynchronously to process the selected media item.
         didSet {
             if let selectedCountry = selectedCountry {
-                Task { await startFetchingParcels(Query: selectedCountry.name, theContinents: false, theCountries: false,theStates: true) }
+                Task { await startFetchingParcels(hello: ["by"],Query: selectedCountry.name, theContinents: false, theCountries: false,theStates: true) }
             }
         }
     }
@@ -83,7 +83,7 @@ class locationDetailsModel {
         // When selectedItem is set, loadMedia is called asynchronously to process the selected media item.
         didSet {
             if let selectedState = selectedState {
-                Task { await startFetchingParcels(Query: selectedState.name, theContinents: false, theCountries: false, theStates: false) }
+                Task { await startFetchingParcels(hello: ["by"],Query: selectedState.name, theContinents: false, theCountries: false, theStates: false) }
             }
         }
     }
@@ -94,9 +94,10 @@ class locationDetailsModel {
     var countries: [parcel] = []
     var states: [parcel] = []
     
-    func startFetchingParcels(Query: String,theContinents: Bool, theCountries: Bool, theStates:Bool) async {
+    
+    func startFetchingParcels(hello: [String],Query: String,theContinents: Bool, theCountries: Bool, theStates:Bool) async {
         // Ensure the URL is valid
-        guard let url = URL(string: "http://:3000/get-parcels?getParcel=\(Query)") else {
+        guard let url = URL(string: "http://:3000/get-parcels?getParcel=\(hello)") else {
             print("Invalid URL")
             return
         }
