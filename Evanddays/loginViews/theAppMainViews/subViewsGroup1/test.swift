@@ -375,7 +375,8 @@ struct ContinentPickerView: View {
                                 }
                             }
                     }
-                    if let selectedCountry = locationDetails.selectedCountry {
+                    
+                    if var selectedCountry = locationDetails.selectedCountry {
                             Picker("States", selection: $locationDetails.selectedState) {
                                 // Loop through the countries and create a Text view for each
                                 ForEach(locationDetails.states) { state in
@@ -391,7 +392,8 @@ struct ContinentPickerView: View {
         }
         .task {
             // Fetch the continents when the view appears
-            await locationDetails.startFetchingParcels(hello: ["bye","hello"],Query: "all", theContinents: true, theCountries: false, theStates: false)
+            
+            await locationDetails.startFetchingParcels(theContinents: true, theCountries: false, theStates: false)
         }
     }
 }
@@ -399,3 +401,6 @@ struct ContinentPickerView: View {
 #Preview {
     ContinentPickerView()
 }
+
+
+//192.168.1.21

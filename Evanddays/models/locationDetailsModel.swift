@@ -63,8 +63,18 @@ class locationDetailsModel {
         // When selectedItem is set, loadMedia is called asynchronously to process the selected media item.
         didSet {
             if let selectedContinent = selectedContinent {
-               
-                Task { await startFetchingParcels(hello: ["by"],Query: selectedContinent.name, theContinents: false, theCountries: true,theStates: false) }
+//                selectedLayerHierarchy.append(selectedContinent.name)
+                if selectedLayerHierarchy.count < 2  {
+                    selectedLayerHierarchy.append(selectedContinent.name)
+                } else {
+                    selectedLayerHierarchy[1] = selectedContinent.name
+                    selectedLayerHierarchy.removeSubrange(2..<selectedLayerHierarchy.count)
+                }
+                // Reset selectedCountry and selectedState
+                selectedCountry = nil
+                selectedState = nil
+
+                Task { await startFetchingParcels( theContinents: false, theCountries: true,theStates: false) }
             }
            
         }
@@ -72,10 +82,18 @@ class locationDetailsModel {
     }
     
     var selectedCountry: parcel? {
+        
         // When selectedItem is set, loadMedia is called asynchronously to process the selected media item.
         didSet {
             if let selectedCountry = selectedCountry {
-                Task { await startFetchingParcels(hello: ["by"],Query: selectedCountry.name, theContinents: false, theCountries: false,theStates: true) }
+                if selectedLayerHierarchy.count < 3 {
+                    selectedLayerHierarchy.append(selectedCountry.name)
+                }else {
+                    selectedLayerHierarchy[2] = selectedCountry.name
+                    selectedLayerHierarchy.removeSubrange(3..<selectedLayerHierarchy.count)
+                }
+                selectedState = nil
+                Task { await startFetchingParcels(theContinents: false, theCountries: false,theStates: true) }
             }
         }
     }
@@ -83,7 +101,13 @@ class locationDetailsModel {
         // When selectedItem is set, loadMedia is called asynchronously to process the selected media item.
         didSet {
             if let selectedState = selectedState {
-                Task { await startFetchingParcels(hello: ["by"],Query: selectedState.name, theContinents: false, theCountries: false, theStates: false) }
+                if selectedLayerHierarchy.count < 4 {
+                    selectedLayerHierarchy.append(selectedState.name)
+                } else {
+                    selectedLayerHierarchy[3] = selectedState.name
+                    selectedLayerHierarchy.removeSubrange(4..<selectedLayerHierarchy.count)
+                }
+                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false) }
             }
         }
     }
@@ -93,15 +117,16 @@ class locationDetailsModel {
 //    var theContinents: Bool = false
     var countries: [parcel] = []
     var states: [parcel] = []
+    var selectedLayerHierarchy: [String] = ["all"]
     
-    
-    func startFetchingParcels(hello: [String],Query: String,theContinents: Bool, theCountries: Bool, theStates:Bool) async {
+    func startFetchingParcels(theContinents: Bool, theCountries: Bool, theStates:Bool) async {
         // Ensure the URL is valid
-        guard let url = URL(string: "http://:3000/get-parcels?getParcel=\(hello)") else {
+        guard let url = URL(string: "http://192.168.1.21:3000/get-parcels?getParcel=\(selectedLayerHierarchy)") else {
             print("Invalid URL")
             return
         }
         do {
+            
             // Perform the network request asynchronously
             let (data, _) = try await URLSession.shared.data(from: url)
             // For debugging: Convert the received data to a string and print it
@@ -120,8 +145,8 @@ class locationDetailsModel {
                         self.continents = decodedParcels
                     } else if theCountries{
                         self.countries = decodedParcels
-                    } else if theStates{
-                        self.states
+                    } else if theStates {
+                        self.states = decodedParcels
                     }
                 }
             }
