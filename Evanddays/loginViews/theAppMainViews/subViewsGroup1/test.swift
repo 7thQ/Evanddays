@@ -353,6 +353,7 @@
 import SwiftUI
 
 struct ContinentPickerView: View {
+//    @State private var locationDetails = createEvent()
     @State private var locationDetails = locationDetailsModel()
     
     var body: some View {
@@ -385,6 +386,9 @@ struct ContinentPickerView: View {
                             }
                     }
 
+                }
+                Section{
+                    Text("\(locationDetails.ID)")
                 }
                 
             }

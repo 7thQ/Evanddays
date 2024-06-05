@@ -14,17 +14,40 @@ struct locationDetailsView: View {
     var body: some View {
         NavigationStack{
             Form{
+                Section(header: Text("Select a Continent")) {
+                    Picker("Continents", selection: $model.selectedContinent) {
+                        // Loop through the continents and create a Text view for each
+                        ForEach(model.continents) { continent in
+                            Text(continent.name).tag(continent as parcel?)
+                        }
+                    }
+                    // Section to display the Picker for countries if a continent is selected
+                    if model.selectedContinent != nil{
+                            Picker("Countries", selection: $model.selectedCountry) {
+                                // Loop through the countries and create a Text view for each
+                                ForEach(model.countries) { country in
+                                    Text(country.name).tag(country as parcel?)
+                                }
+                            }
+                    }
+                    
+                    if var selectedCountry = model.selectedCountry {
+                            Picker("States", selection: $model.selectedState) {
+                                // Loop through the countries and create a Text view for each
+                                ForEach(model.states) { state in
+                                    Text(state.name).tag(state as parcel?)
+                                }
+                            }
+                    }
+
+                }
                 Section{
                     Toggle("Use Address", isOn: $model.useAddress)
                     if model.useAddress {
-                        TextField("", text: $model.streetAddress)
-                        TextField("", text: $model.city)
-                        TextField("", text: $model.state)
-                        TextField("", text: $model.zipCode)
-                        TextField("continent", text: $model.continent)
-                        TextField("country", text: $model.country)
+                        TextField("Street Addres", text: $model.streetAddress)
+                        TextField("Zip Code", text: $model.zipCode)
                     }
-                }.disabled(true)
+                }.disabled(false)
                 Section{
                     Toggle("Use Coordinates", isOn: $model.useCoordinates)
                     if model.useCoordinates {
@@ -49,6 +72,12 @@ struct locationDetailsView: View {
                     }
                 }
             }
+            .navigationTitle("Continent Picker")
+        }
+        .task {
+            // Fetch the continents when the view appears
+            
+            await model.startFetchingParcels(theContinents: true, theCountries: false, theStates: false)
         }
     }
 }
@@ -56,3 +85,5 @@ struct locationDetailsView: View {
 #Preview {
     locationDetailsView(model: createEvent(), media: addVideoOrPhotos())
 }
+
+
