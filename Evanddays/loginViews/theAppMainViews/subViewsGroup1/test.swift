@@ -385,6 +385,14 @@ struct ContinentPickerView: View {
                                 }
                             }
                     }
+                    if var selectedState = locationDetails.selectedState {
+                            Picker("Counties", selection: $locationDetails.selectedCounty) {
+                                // Loop through the countries and create a Text view for each
+                                ForEach(locationDetails.counties) { county in
+                                    Text(county.name).tag(county as parcel?)
+                                }
+                            }
+                    }
 
                 }
                 Section{
@@ -397,7 +405,7 @@ struct ContinentPickerView: View {
         .task {
             // Fetch the continents when the view appears
             
-            await locationDetails.startFetchingParcels(theContinents: true, theCountries: false, theStates: false)
+            await locationDetails.startFetchingParcels(theContinents: true, theCountries: false, theStates: false, theCounties: false)
         }
     }
 }

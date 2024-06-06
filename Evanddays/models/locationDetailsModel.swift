@@ -25,7 +25,7 @@ class locationDetailsModel {
                 selectedCountry = nil
                 selectedState = nil
 
-                Task { await startFetchingParcels( theContinents: false, theCountries: true,theStates: false) }
+                Task { await startFetchingParcels( theContinents: false, theCountries: true,theStates: false, theCounties: false) }
             }
            
         }
@@ -46,7 +46,7 @@ class locationDetailsModel {
                     selectedLayerHierarchy.removeSubrange(3..<selectedLayerHierarchy.count)
                 }
                 selectedState = nil
-                Task { await startFetchingParcels(theContinents: false, theCountries: false,theStates: true) }
+                Task { await startFetchingParcels(theContinents: false, theCountries: false,theStates: true, theCounties: false) }
             }
         }
     }
@@ -60,20 +60,39 @@ class locationDetailsModel {
                     selectedLayerHierarchy[3] = selectedState.name
                     selectedLayerHierarchy.removeSubrange(4..<selectedLayerHierarchy.count)
                 }
-                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false) }
+                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false, theCounties: true) }
             }
         }
     }
+    ///////////////////
+    ///////////////////
+    ///////////////////
+    
+    var selectedCounty: parcel? {
+        didSet{
+            if let selectedCounty = selectedCounty {
+                if selectedLayerHierarchy.count < 5 {
+                    selectedLayerHierarchy.append(selectedCounty.name)
+                }else{
+                    selectedLayerHierarchy[4] = selectedCounty.name
+                    selectedLayerHierarchy.removeSubrange(5..<selectedLayerHierarchy.count)
+                }
+            }
+        }
+    }
+    
+    
     
     // State variables to hold the list of decoded parcels
     var continents: [parcel] = []
 //    var theContinents: Bool = false
     var countries: [parcel] = []
     var states: [parcel] = []
+    var counties: [parcel] = []
     var selectedLayerHierarchy: [String] = ["all"]
     var ID: String = ""
     
-    func startFetchingParcels(theContinents: Bool, theCountries: Bool, theStates:Bool) async {
+    func startFetchingParcels(theContinents: Bool, theCountries: Bool, theStates:Bool, theCounties: Bool) async {
         // Ensure the URL is valid
         guard let url = URL(string: "http://:3000/get-parcels?getParcel=\(selectedLayerHierarchy)") else {
             print("Invalid URL")
@@ -101,6 +120,8 @@ class locationDetailsModel {
                         self.countries = decodedParcels
                     } else if theStates {
                         self.states = decodedParcels
+                    }else if theCounties {
+                        self.counties = decodedParcels
                     }
                 }
             }
