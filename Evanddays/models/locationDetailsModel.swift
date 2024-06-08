@@ -24,8 +24,10 @@ class locationDetailsModel {
                 // Reset selectedCountry and selectedState
                 selectedCountry = nil
                 selectedState = nil
+                selectedCounty = nil
+                selectedCitiesandTownsorFeature = nil
 
-                Task { await startFetchingParcels( theContinents: false, theCountries: true,theStates: false, theCounties: false) }
+                Task { await startFetchingParcels( theContinents: false, theCountries: true,theStates: false, theCounties: false, theCitiesandTownsorFeature: false) }
             }
            
         }
@@ -46,7 +48,9 @@ class locationDetailsModel {
                     selectedLayerHierarchy.removeSubrange(3..<selectedLayerHierarchy.count)
                 }
                 selectedState = nil
-                Task { await startFetchingParcels(theContinents: false, theCountries: false,theStates: true, theCounties: false) }
+                selectedCounty = nil
+                selectedCitiesandTownsorFeature = nil
+                Task { await startFetchingParcels(theContinents: false, theCountries: false,theStates: true, theCounties: false, theCitiesandTownsorFeature: false) }
             }
         }
     }
@@ -60,7 +64,9 @@ class locationDetailsModel {
                     selectedLayerHierarchy[3] = selectedState.name
                     selectedLayerHierarchy.removeSubrange(4..<selectedLayerHierarchy.count)
                 }
-                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false, theCounties: true) }
+                selectedCounty = nil
+                selectedCitiesandTownsorFeature = nil
+                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false, theCounties: true, theCitiesandTownsorFeature: false) }
             }
         }
     }
@@ -77,10 +83,25 @@ class locationDetailsModel {
                     selectedLayerHierarchy[4] = selectedCounty.name
                     selectedLayerHierarchy.removeSubrange(5..<selectedLayerHierarchy.count)
                 }
+                
+                selectedCitiesandTownsorFeature = nil
+                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false, theCounties: false, theCitiesandTownsorFeature: true) }
             }
         }
     }
-    
+    var selectedCitiesandTownsorFeature: parcel? {
+        didSet {
+            if let selectedCitiesandTownsorFeature = selectedCitiesandTownsorFeature {
+                if selectedLayerHierarchy.count < 6 {
+                    selectedLayerHierarchy.append(selectedCitiesandTownsorFeature.name)
+                }else {
+                    selectedLayerHierarchy[5] = selectedCitiesandTownsorFeature.name
+                    selectedLayerHierarchy.removeSubrange(6..<selectedLayerHierarchy.count)
+                }
+                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false, theCounties: false, theCitiesandTownsorFeature: false) }
+            }
+        }
+    }
     
     
     // State variables to hold the list of decoded parcels
@@ -89,10 +110,11 @@ class locationDetailsModel {
     var countries: [parcel] = []
     var states: [parcel] = []
     var counties: [parcel] = []
+    var CitiesandTownsorFeature: [parcel] = []
     var selectedLayerHierarchy: [String] = ["all"]
     var ID: String = ""
     
-    func startFetchingParcels(theContinents: Bool, theCountries: Bool, theStates:Bool, theCounties: Bool) async {
+    func startFetchingParcels(theContinents: Bool, theCountries: Bool, theStates:Bool, theCounties: Bool, theCitiesandTownsorFeature: Bool) async {
         // Ensure the URL is valid
         guard let url = URL(string: "http://:3000/get-parcels?getParcel=\(selectedLayerHierarchy)") else {
             print("Invalid URL")
@@ -122,6 +144,8 @@ class locationDetailsModel {
                         self.states = decodedParcels
                     }else if theCounties {
                         self.counties = decodedParcels
+                    }else if theCitiesandTownsorFeature {
+                        self.CitiesandTownsorFeature = decodedParcels
                     }
                 }
             }
