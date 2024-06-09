@@ -401,11 +401,18 @@ struct ContinentPickerView: View {
                                 }
                             }
                     }
+                    if var selectedCitiesandTownsorFeature = locationDetails.selectedCitiesandTownsorFeature {
+                            Picker("City or Feature", selection: $locationDetails.selectedNeighborhoodorFeature) {
+                                // Loop through the countries and create a Text view for each
+                                ForEach(locationDetails.neighborhoodOrFeature) { NF in
+                                    Text(NF.name).tag(NF as parcel?)
+                                }
+                            }
+                    }
+
 
                 }
-                Section{
-                    Text("\(locationDetails.ID)")
-                }
+                
                 
             }
             .navigationTitle("Continent Picker")
@@ -413,7 +420,7 @@ struct ContinentPickerView: View {
         .task {
             // Fetch the continents when the view appears
             
-            await locationDetails.startFetchingParcels(theContinents: true, theCountries: false, theStates: false, theCounties: false, theCitiesandTownsorFeature: false)
+            await locationDetails.startFetchingParcels(theContinents: true, theCountries: false, theStates: false, theCounties: false, theCitiesandTownsorFeature: false, theNeighborhoodorFeature: false)
         }
     }
 }

@@ -26,8 +26,9 @@ class locationDetailsModel {
                 selectedState = nil
                 selectedCounty = nil
                 selectedCitiesandTownsorFeature = nil
+                selectedNeighborhoodorFeature = nil
 
-                Task { await startFetchingParcels( theContinents: false, theCountries: true,theStates: false, theCounties: false, theCitiesandTownsorFeature: false) }
+                Task { await startFetchingParcels( theContinents: false, theCountries: true,theStates: false, theCounties: false, theCitiesandTownsorFeature: false, theNeighborhoodorFeature: false) }
             }
            
         }
@@ -50,7 +51,8 @@ class locationDetailsModel {
                 selectedState = nil
                 selectedCounty = nil
                 selectedCitiesandTownsorFeature = nil
-                Task { await startFetchingParcels(theContinents: false, theCountries: false,theStates: true, theCounties: false, theCitiesandTownsorFeature: false) }
+                selectedNeighborhoodorFeature = nil
+                Task { await startFetchingParcels(theContinents: false, theCountries: false,theStates: true, theCounties: false, theCitiesandTownsorFeature: false, theNeighborhoodorFeature: false) }
             }
         }
     }
@@ -66,7 +68,8 @@ class locationDetailsModel {
                 }
                 selectedCounty = nil
                 selectedCitiesandTownsorFeature = nil
-                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false, theCounties: true, theCitiesandTownsorFeature: false) }
+                selectedNeighborhoodorFeature = nil
+                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false, theCounties: true, theCitiesandTownsorFeature: false, theNeighborhoodorFeature: false) }
             }
         }
     }
@@ -85,7 +88,8 @@ class locationDetailsModel {
                 }
                 
                 selectedCitiesandTownsorFeature = nil
-                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false, theCounties: false, theCitiesandTownsorFeature: true) }
+                selectedNeighborhoodorFeature = nil
+                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false, theCounties: false, theCitiesandTownsorFeature: true, theNeighborhoodorFeature: false) }
             }
         }
     }
@@ -98,11 +102,24 @@ class locationDetailsModel {
                     selectedLayerHierarchy[5] = selectedCitiesandTownsorFeature.name
                     selectedLayerHierarchy.removeSubrange(6..<selectedLayerHierarchy.count)
                 }
-                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false, theCounties: false, theCitiesandTownsorFeature: false) }
+                selectedNeighborhoodorFeature = nil
+                Task { await startFetchingParcels(theContinents: false, theCountries: false, theStates: false, theCounties: false, theCitiesandTownsorFeature: false, theNeighborhoodorFeature: true) }
             }
         }
     }
-    
+    var selectedNeighborhoodorFeature: parcel? {
+        didSet {
+            if let selectedNeighborhoodorFeature = selectedNeighborhoodorFeature {
+                if selectedLayerHierarchy.count < 7 {
+                    selectedLayerHierarchy.append(selectedNeighborhoodorFeature.name)
+                }else{
+                    selectedLayerHierarchy[6] = selectedNeighborhoodorFeature.name
+                    selectedLayerHierarchy.removeSubrange(7..<selectedLayerHierarchy.count)
+                }
+                
+            }
+        }
+    }
     
     // State variables to hold the list of decoded parcels
     var continents: [parcel] = []
@@ -111,10 +128,12 @@ class locationDetailsModel {
     var states: [parcel] = []
     var counties: [parcel] = []
     var CitiesandTownsorFeature: [parcel] = []
+    var neighborhoodOrFeature: [parcel] = []
+    
     var selectedLayerHierarchy: [String] = ["all"]
     var ID: String = ""
     
-    func startFetchingParcels(theContinents: Bool, theCountries: Bool, theStates:Bool, theCounties: Bool, theCitiesandTownsorFeature: Bool) async {
+    func startFetchingParcels(theContinents: Bool, theCountries: Bool, theStates:Bool, theCounties: Bool, theCitiesandTownsorFeature: Bool, theNeighborhoodorFeature: Bool) async {
         // Ensure the URL is valid
         guard let url = URL(string: "http://:3000/get-parcels?getParcel=\(selectedLayerHierarchy)") else {
             print("Invalid URL")
@@ -146,6 +165,8 @@ class locationDetailsModel {
                         self.counties = decodedParcels
                     }else if theCitiesandTownsorFeature {
                         self.CitiesandTownsorFeature = decodedParcels
+                    }else if theNeighborhoodorFeature {
+                        self.neighborhoodOrFeature = decodedParcels
                     }
                 }
             }
